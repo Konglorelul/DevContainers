@@ -1,0 +1,7 @@
+---
+# helmfile/helmfile.yaml
+# Root helmfile. Imports all releases in this directory.
+
+helmfiles:
+  - Charts/Postgresql/postgresql.yaml
+#  - Charts/Coder/coder.yaml

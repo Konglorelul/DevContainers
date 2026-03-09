@@ -1,0 +1,17 @@
+---
+# helmfile/releases/postgresql.yaml
+
+
+
+releases:
+  - name: postgresql
+    namespace: management
+    createNamespace: true
+    chart: oci://registry-1.docker.io/bitnamicharts/postgresql
+    version: "17.6.0"
+    values:
+      - ../Postgresql/values.yaml
+    secrets:
+      - ../Secrets/postgresql.sops.yaml
+
+

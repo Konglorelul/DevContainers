@@ -1,0 +1,30 @@
+# helmfile/values/postgresql.yaml
+
+image:
+  registry: docker.io
+  repository: bitnamilegacy/postgresql
+  tag: 17.6.0-debian-12-r4
+
+auth:
+
+  database: coder
+
+  username: coder
+
+  # password is injected from secrets/postgresql.sops.yaml
+
+primary:
+
+  persistence:
+
+    enabled: true
+
+    size: 5Gi
+
+# Disable read replicas — not needed for a local dev setup.
+
+readReplicas:
+
+  replicaCount: 0
+
+ 

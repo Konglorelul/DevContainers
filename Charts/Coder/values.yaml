@@ -1,0 +1,46 @@
+# helmfile/values/coder.yaml
+
+coder:
+
+  env:
+
+    - name: CODER_ACCESS_URL
+
+      value: "http://coder.local"
+
+    - name: CODER_PG_CONNECTION_URL
+
+      # Injected from secrets/coder.sops.yaml via CODER_PG_CONNECTION_URL.
+
+      # Format: postgresql://coder:<password>@postgresql.management.svc.cluster.local:5432/coder?sslmode=disable
+
+      valueFrom:
+
+        secretKeyRef:
+
+          name: coder-db-url
+
+          key: url
+
+    # Disable TLS since we are running HTTP locally.
+
+    - name: CODER_TLS_ENABLE
+
+      value: "false"
+
+  service:
+
+    type: ClusterIP
+
+  ingress:
+
+    enable: true
+
+    className: nginx
+
+    host: coder.local
+
+    # No TLS section — HTTP only.
+
+replicaCount: 1
+ 
